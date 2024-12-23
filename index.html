@@ -119,6 +119,13 @@
         <li></li>
         <li></li>
         <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
     </ul>
 
     <div id="waiting" style="display:none">
@@ -227,10 +234,29 @@
     <div id="christmas" style="display:none">
         <div class="container" id="christmastree">
             <div class="star"></div>
-            <div class="pressie">
-                <div class="cover"></div>
-                <div class="wrap"> </div>
-                <div class="ribbon"></div>
+            <div class="presents-group">
+                <div class="pressie" onclick="openModal('imageModal')">
+                    <div class="cover"></div>
+                    <div class="wrap"></div>
+                    <div class="ribbon"></div>
+                </div>
+                <div class="pressie pressie-small pressie-blue" onclick="openModal('blueModal')">
+                    <div class="cover" style="background-color: 4B69FF;"></div>
+                    <div class="wrap"></div>
+                    <div class="ribbon"></div>
+                </div>
+
+                <div class="pressie pressie-green" onclick="openModal('greenModal')">
+                    <div class="cover" style="background-color: 00fd5d;"></div>
+                    <div class="wrap"></div>
+                    <div class="ribbon"></div>
+                </div>
+
+                <div class="pressie pressie-yellow" onclick="openModal('yellowModal')">
+                    <div class="cover" style="background-color: FFE066;"></div>
+                    <div class="wrap"></div>
+                    <div class="ribbon"></div>
+                </div>
             </div>
             <div class="tree">
                 <div class="base"> </div>
@@ -268,6 +294,40 @@
         </div>
     </div>
 
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img src="images/view.png" id="presentImage" style="width:100%; height:auto;">
+        </div>
+    </div>
+
+    <div id="blueModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content modal-text">
+            <h2>Blue Present</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+        </div>
+    </div>
+
+    <div id="greenModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content modal-text">
+            <h2>Green Present</h2>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</p>
+        </div>
+    </div>
+
+    <div id="yellowModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content modal-text">
+            <h2>Yellow Present</h2>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+        </div>
+    </div>
+
     <canvas></canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -299,7 +359,7 @@
         $('.container').on('mouseout', function () {
             $('.bauble').removeClass('light');
         })
-        if (new Date() < new Date(2024, 12, 21, 17, 0, 0)) {
+        if (new Date() < new Date(2024, 1, 21, 17, 0, 0)) {
             $('#christmas').hide();
             $('#lightrope').hide();
             $('#waiting').show();
@@ -339,6 +399,31 @@
                     outerColor = "231,244,255";
                 }
                 memRightLetters = rightLetters;
+            });
+        }
+    </script>
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modalId === 'imageModal') {
+                const img = document.getElementById('presentImage');
+                img.src = 'images/view.png';
+            }
+            modal.style.display = "block";
+        }
+
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.onclick = function () {
+                closeBtn.parentElement.style.display = "none";
+            }
+        });
+
+        window.onclick = function (event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
             });
         }
     </script>
