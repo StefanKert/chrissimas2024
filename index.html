@@ -327,6 +327,19 @@
             </p>
         </div>
     </div>
+    
+    <!-- Add new video modal before closing body tag -->
+    <div id="videoModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content video-container">
+            <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/mdUmcQSSJ5A?si=pbZyeks_P-XUga3I?autoplay=1"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </iframe>
+        </div>
+    </div>
 
     <canvas></canvas>
 
@@ -426,6 +439,17 @@
                 }
             });
         }
+
+        document.getElementById('topic').addEventListener('input', function (e) {
+            const input = e.target.value.toLowerCase().trim();
+            const solutions = ['pizzera & jaus', 'pizzera und jaus'];
+
+            if (solutions.includes(input.toLowerCase())) {
+                const modal = document.getElementById('videoModal');
+                modal.style.display = "block";
+                e.target.disabled = true;
+            }
+        });
     </script>
 </body>
 
