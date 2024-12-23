@@ -2,13 +2,34 @@
 
 .waiting-container {
     background-color: transparent;
-    margin: 40px auto 50px auto;
+    margin: 20px auto 30px auto; /* reduced margins */
     position: relative;
 }
 
 @media only screen and (min-width: 768px) {
     .waiting-container {
         margin-top: 200px;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .waiting-container {
+        margin-top: 10px;
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .waiting-container {
+        margin-top: 0;
+        transform: scale(0.7);
+    }
+}
+
+@media screen and (max-height: 500px) {
+    .waiting-container {
+        margin-top: 0;
+        transform: scale(0.6);
     }
 }
 
