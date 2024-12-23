@@ -15,6 +15,55 @@
             top: 0;
             width: 100%;
         }
+
+        .countdown {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 24px;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            background: #fff;
+            border-radius: 20px;
+            padding: 15px;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 100px;
+            color: #333;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            opacity: 0.9;
+            z-index: 1000;
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-top-color: #fff;
+            border-bottom: 0;
+            margin-left: -15px;
+            margin-bottom: -15px;
+        }
+
+        .waiting-container {
+            padding-top: 150px;
+        }
     </style>
     <link rel="stylesheet" href="css/tree.css">
     <link rel="stylesheet" href="css/lightrope.css">
@@ -24,7 +73,8 @@
 </head>
 
 <body>
-    <ul class="lightrope">
+    <ul class="lightrope" id="lightrope">
+        <li></li>
         <li></li>
         <li></li>
         <li></li>
@@ -71,6 +121,7 @@
 
     <div id="waiting" style="display:none">
         <div class="waiting-container">
+            <div class="speech-bubble" id="countdown"></div>
             <div class="artboard">
                 <div class="deer">
                     <div class="rocking">
@@ -222,6 +273,22 @@
     <script src="js/snowflakes.js"></script>
     <script>
         var memRightLetters = 0;
+
+        function updateCountdown() {
+            const christmas = new Date(2024, 11, 24, 15, 0, 0);
+            const now = new Date();
+            const diff = christmas - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('countdown').innerHTML =
+                `Ho Ho Ho!<br>Only ${days} days and ${hours} hours until Christmas!`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
         $('.container').on('mouseover', function () {
             $('.bauble').addClass('light');
             $('.star').addClass('star-light');
@@ -230,8 +297,9 @@
         $('.container').on('mouseout', function () {
             $('.bauble').removeClass('light');
         })
-        if (new Date() < new Date(2018, 11, 24, 17, 0, 0)) {
+        if (new Date() < new Date(2024, 12, 21, 17, 0, 0)) {
             $('#christmas').hide();
+            $('#lightrope').hide();
             $('#waiting').show();
             maxSnowflakes = 500;
         }
@@ -264,18 +332,12 @@
                     maxSnowflakes = 10000;
                     innerColor = "34,139,43";
                     outerColor = "30,200,50";
-                    toastr.success('Das Christkind hat was f&uuml;r dich', 'Check mal deine Emails :)', { timeOut: 5000 });
-                    $.ajax({
-                        type: "POST",
-                        url: "https://chrissis-christmas2018.azurewebsites.net/api/SendEmail",
-                    });
                 }
                 else {
                     innerColor = "255,255,255";
                     outerColor = "231,244,255";
                 }
                 memRightLetters = rightLetters;
-                console.log("MaxSnowFlakes", maxSnowflakes);
             });
         }
     </script>
