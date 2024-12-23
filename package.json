@@ -1,0 +1,21 @@
+{
+  "name": "christmas-maintenance-site",
+  "version": "1.0.0",
+  "description": "A festive maintenance page for the Christmas season.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined'"
+  },
+  "keywords": [
+    "christmas",
+    "maintenance",
+    "holiday"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
