@@ -232,65 +232,67 @@
     </div>
 
     <div id="christmas" style="display:none">
-        <div class="container" id="christmastree">
-            <div class="star"></div>
-            <div class="presents-group">
-                <div class="pressie" onclick="openModal('imageModal')">
-                    <div class="cover"></div>
-                    <div class="wrap"></div>
-                    <div class="ribbon"></div>
-                </div>
-                <div class="pressie pressie-small pressie-blue" onclick="openModal('blueModal')">
-                    <div class="cover" style="background-color: 4B69FF;"></div>
-                    <div class="wrap"></div>
-                    <div class="ribbon"></div>
-                </div>
+        <div class="tree-wrapper">
+            <div class="container" id="christmastree">
+                <div class="star"></div>
+                <div class="presents-group">
+                    <div class="pressie" onclick="openModal('imageModal')">
+                        <div class="cover"></div>
+                        <div class="wrap"></div>
+                        <div class="ribbon"></div>
+                    </div>
+                    <div class="pressie pressie-small pressie-blue" onclick="openModal('blueModal')">
+                        <div class="cover" style="background-color: 4B69FF;"></div>
+                        <div class="wrap"></div>
+                        <div class="ribbon"></div>
+                    </div>
 
-                <div class="pressie pressie-green" onclick="openModal('greenModal')">
-                    <div class="cover" style="background-color: 00fd5d;"></div>
-                    <div class="wrap"></div>
-                    <div class="ribbon"></div>
-                </div>
+                    <div class="pressie pressie-green" onclick="openModal('greenModal')">
+                        <div class="cover" style="background-color: 00fd5d;"></div>
+                        <div class="wrap"></div>
+                        <div class="ribbon"></div>
+                    </div>
 
-                <div class="pressie pressie-yellow" onclick="openModal('yellowModal')">
-                    <div class="cover" style="background-color: FFE066;"></div>
-                    <div class="wrap"></div>
-                    <div class="ribbon"></div>
+                    <div class="pressie pressie-yellow" onclick="openModal('yellowModal')">
+                        <div class="cover" style="background-color: FFE066;"></div>
+                        <div class="wrap"></div>
+                        <div class="ribbon"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="tree">
-                <div class="base"> </div>
-                <div class="layer">
-                    <div class="tree-line"> </div>
-                    <div class="bauble one"></div>
-                </div>
+                <div class="tree">
+                    <div class="base"> </div>
+                    <div class="layer">
+                        <div class="tree-line"> </div>
+                        <div class="bauble one"></div>
+                    </div>
 
-                <div class="layer two">
-                    <div class="tree-line two"> </div>
-                    <div class="bauble two"></div>
-                    <div class="socks">
-                        <div class="top"> </div>
-                        <div class="foot"></div>
+                    <div class="layer two">
+                        <div class="tree-line two"> </div>
+                        <div class="bauble two"></div>
+                        <div class="socks">
+                            <div class="top"> </div>
+                            <div class="foot"></div>
+                        </div>
+                    </div>
+
+                    <div class="layer three">
+                        <div class="tree-line three"> </div>
+                        <div class="bauble three"></div>
+                        <div class="socks two">
+                            <div class="top"> </div>
+                            <div class="foot two"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="layer three">
-                    <div class="tree-line three"> </div>
-                    <div class="bauble three"></div>
-                    <div class="socks two">
-                        <div class="top"> </div>
-                        <div class="foot two"></div>
-                    </div>
+                <div class="layer four">
+                    <div class="bauble four"></div>
+                    <div class="star two"></div>
+                    <div class="tree-line four"> </div>
                 </div>
-            </div>
 
-            <div class="layer four">
-                <div class="bauble four"></div>
-                <div class="star two"></div>
-                <div class="tree-line four"> </div>
+                <input type="text" placeholder="Das Thema .... :)" id="topic" />
             </div>
-
-            <input type="text" placeholder="Das Thema .... :)" id="topic" />
         </div>
     </div>
 
@@ -327,17 +329,14 @@
             </p>
         </div>
     </div>
-    
+
     <!-- Add new video modal before closing body tag -->
     <div id="videoModal" class="modal">
         <span class="close">&times;</span>
         <div class="modal-content video-container">
-            <iframe width="560" height="315"
-                src="https://www.youtube.com/embed/mdUmcQSSJ5A?si=pbZyeks_P-XUga3I?autoplay=1"
-                title="YouTube video player" frameborder="0"
+            <iframe width="560" height="315" src="" id="video" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </iframe>
         </div>
     </div>
 
@@ -448,6 +447,7 @@
                 const modal = document.getElementById('videoModal');
                 modal.style.display = "block";
                 e.target.disabled = true;
+                $("#video").attr('src', "https://www.youtube.com/embed/mdUmcQSSJ5A?si=5YbjPY20qcXxeLpB?autoplay=1");
             }
         });
     </script>
