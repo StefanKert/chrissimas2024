@@ -1,25 +1,284 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Maintenance Site</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <style>
+        body {
+            background-color: #111;
+        }
+
+        canvas {
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="css/tree.css">
+    <link rel="stylesheet" href="css/lightrope.css">
+    <link rel="stylesheet" href="css/sprinkles.css">
+    <link rel="stylesheet" href="css/waiting.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
+
 <body>
-    <header>
-        <h1>🎄 Merry Christmas! 🎄</h1>
-        <p>Our site is currently under maintenance. Please check back soon!</p>
-    </header>
-    <main>
-        <section>
-            <h2>Thank you for your patience!</h2>
-            <p>We are working hard to bring you a better experience.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Christmas Maintenance Site</p>
-    </footer>
-    <script src="scripts/main.js"></script>
+    <ul class="lightrope">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <div id="waiting" style="display:none">
+        <div class="waiting-container">
+            <div class="artboard">
+                <div class="deer">
+                    <div class="rocking">
+                        <div class="head">
+                            <div class="horns">
+                                <div class="horn horn-left">
+                                    <div class="line line-one"></div>
+                                    <div class="line"></div>
+                                    <div class="line line-three"></div>
+                                </div>
+                                <div class="horn horn-right">
+                                    <div class="line line-one"></div>
+                                    <div class="line"></div>
+                                    <div class="line line-three"></div>
+                                </div>
+                            </div>
+                            <div class="ears">
+                                <div class="ear ear-left"></div>
+                                <div class="ear ear-right"></div>
+                            </div>
+                            <div class="eyes">
+                                <div class="eye eye-left"></div>
+                                <div class="eye eye-right"></div>
+                            </div>
+                            <div class="nose"></div>
+                        </div>
+                        <div class="body">
+                            <div class="shadow"></div>
+                            <div class="hooves">
+                                <div class="hoof-one">
+                                    <div class="line"></div>
+                                    <div class="anim-part">
+                                        <div class="circle">
+                                            <div class="circle">
+                                                <div class="circle">
+                                                    <div class="circle">
+                                                        <div class="circle circle-last"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hoof-two">
+                                    <div class="line-one"></div>
+                                    <div class="line-two"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tail">
+                            <div class="circle">
+                                <div class="circle">
+                                    <div class="circle">
+                                        <div class="circle">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="legs">
+                        <div class="leg-left">
+                            <div class="anim-part">
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                        <div class="leg-right">
+                            <div class="anim-part">
+                                <div class="circle">
+                                    <div class="circle">
+                                        <div class="circle">
+                                            <div class="circle">
+                                                <div class="circle">
+                                                    <div class="circle">
+                                                        <div class="circle">
+                                                            <div class="circle">
+                                                                <div class="circle circle-last"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="presents">
+                    <div class="present present-one"></div>
+                    <div class="present present-two"></div>
+                    <div class="present present-two present-two-right"></div>
+                    <div class="present present-three"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="christmas" style="display:none">
+        <div class="container" id="christmastree">
+            <div class="star"></div>
+            <div class="pressie">
+                <div class="cover"></div>
+                <div class="wrap"> </div>
+                <div class="ribbon"></div>
+            </div>
+            <div class="tree">
+                <div class="base"> </div>
+                <div class="layer">
+                    <div class="tree-line"> </div>
+                    <div class="bauble one"></div>
+                </div>
+
+                <div class="layer two">
+                    <div class="tree-line two"> </div>
+                    <div class="bauble two"></div>
+                    <div class="socks">
+                        <div class="top"> </div>
+                        <div class="foot"></div>
+                    </div>
+                </div>
+
+                <div class="layer three">
+                    <div class="tree-line three"> </div>
+                    <div class="bauble three"></div>
+                    <div class="socks two">
+                        <div class="top"> </div>
+                        <div class="foot two"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layer four">
+                <div class="bauble four"></div>
+                <div class="star two"></div>
+                <div class="tree-line four"> </div>
+            </div>
+            <input type="text" placeholder="Das Thema .... :)" id="topic" />
+        </div>
+    </div>
+
+    <canvas></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="js/sprinkles.js"></script>
+    <script src="js/snowflakes.js"></script>
+    <script>
+        var memRightLetters = 0;
+        $('.container').on('mouseover', function () {
+            $('.bauble').addClass('light');
+            $('.star').addClass('star-light');
+        })
+
+        $('.container').on('mouseout', function () {
+            $('.bauble').removeClass('light');
+        })
+        if (new Date() < new Date(2018, 11, 24, 17, 0, 0)) {
+            $('#christmas').hide();
+            $('#waiting').show();
+            maxSnowflakes = 500;
+        }
+        else {
+            $('#waiting').hide();
+            $('#christmas').show();
+            $('#topic').val("");
+            $('#topic').on('input', function (e) {
+                var input = $(this);
+                var text = input.val();
+                var expected = "Zeit";
+                if (expected.length === 0) {
+                    maxSnowflakes = 0;
+                }
+                var rightLetters = 0;
+                var wrongLetters = 0;
+                for (var i = 0; i < text.length; i++) {
+                    if (text[i] === expected[i]) {
+                        rightLetters++;
+                    } else {
+                        wrongLetters++;
+                    }
+                }
+                maxSnowflakes = rightLetters * 10;
+                if (wrongLetters > 0) {
+                    innerColor = "139,34,43";
+                    outerColor = "200,30,50";
+                }
+                else if (rightLetters === expected.length) {
+                    maxSnowflakes = 10000;
+                    innerColor = "34,139,43";
+                    outerColor = "30,200,50";
+                    toastr.success('Das Christkind hat was f&uuml;r dich', 'Check mal deine Emails :)', { timeOut: 5000 });
+                    $.ajax({
+                        type: "POST",
+                        url: "https://chrissis-christmas2018.azurewebsites.net/api/SendEmail",
+                    });
+                }
+                else {
+                    innerColor = "255,255,255";
+                    outerColor = "231,244,255";
+                }
+                memRightLetters = rightLetters;
+                console.log("MaxSnowFlakes", maxSnowflakes);
+            });
+        }
+    </script>
 </body>
+
 </html>
