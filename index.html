@@ -263,6 +263,7 @@
                 <div class="star two"></div>
                 <div class="tree-line four"> </div>
             </div>
+
             <input type="text" placeholder="Das Thema .... :)" id="topic" />
         </div>
     </div>
@@ -280,12 +281,11 @@
             const christmas = new Date(2024, 11, 24, 15, 0, 0);
             const now = new Date();
             const diff = christmas - now;
-
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
 
             document.getElementById('countdown').innerHTML =
-                `Ho Ho Ho!<br>Only ${days} days and ${hours} hours until Christmas!`;
+                `Waiting for another ${hours} hours until Christmas!`;
         }
 
         setInterval(updateCountdown, 1000);
@@ -303,7 +303,7 @@
             $('#christmas').hide();
             $('#lightrope').hide();
             $('#waiting').show();
-            maxSnowflakes = 500;
+            maxSnowflakes = 1000;
         }
         else {
             $('#waiting').hide();
@@ -312,7 +312,6 @@
             $('#topic').on('input', function (e) {
                 var input = $(this);
                 var text = input.val();
-                var expected = "Zeit";
                 if (expected.length === 0) {
                     maxSnowflakes = 0;
                 }

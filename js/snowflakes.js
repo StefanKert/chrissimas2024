@@ -3,12 +3,16 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d');
 
-var width = void 0, height = void 0, lastNow = void 0;
-var snowflakes = void 0;
-var maxSnowflakes = 0;
+var width, height, lastNow;
+var snowflakes;
+var maxSnowflakes = 100;
+var settledSnowflakes = [];
+var groundLevel;
 
 function init() {
     snowflakes = [];
+    settledSnowflakes = [];
+    groundLevel = height;
     resize();
     render(lastNow = performance.now());
 }
@@ -25,6 +29,14 @@ function render(now) {
 
     ctx.fillStyle = ctx.strokeStyle = '#fff';
 
+    // Draw settled snowflakes first
+    settledSnowflakes.forEach(function(snowflake) {
+        ctx.beginPath();
+        ctx.arc(snowflake.x, snowflake.y, snowflake.size * 0.1, 0, Math.PI * 2, false);
+        ctx.fill();
+    });
+
+    // Draw active snowflakes
     snowflakes.forEach(function (snowflake) { return snowflake.update(elapsed, now); });
 }
 
@@ -52,7 +64,7 @@ var Snowflake = function () {
             this.yVel = rand(.02, .1);
             this.angle = rand(0, Math.PI * 2);
             this.angleVel = rand(-.001, .001);
-            this.size = rand(7, 12);
+            this.size = rand(7, 12) 
             this.sizeOsc = rand(.01, .5);
         }
     }, {
@@ -65,23 +77,50 @@ var Snowflake = function () {
 
             this.x += this.xVel * elapsed;
             this.y += this.yVel * elapsed;
-            this.angle += this.xVel * 0.05 * elapsed; //this.angleVel * elapsed
+            this.angle += this.xVel * 0.05 * elapsed;
 
-            if (
-                this.y - this.size > height ||
-                this.x + this.size < 0 ||
-                this.x - this.size > width) {
+            // Check for collision with ground or settled snowflakes
+            if (this.y + this.size >= groundLevel) {
+                this.settle();
+                return;
+            }
+
+            // Check collision with settled snowflakes
+            for (var i = 0; i < settledSnowflakes.length; i++) {
+                var settled = settledSnowflakes[i];
+                var dx = this.x - settled.x;
+                var dy = this.y - settled.y;
+                var distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < (this.size + settled.size) * 0.01) { // Reduced collision distance (was 0.5)
+                    this.settle();
+                    return;
+                }
+            }
+
+            if (this.x + this.size < 0 || this.x - this.size > width) {
                 this.spawn();
             }
 
             this.render();
         }
     }, {
+        key: 'settle', value: function settle() {
+            this.yVel = 0;
+            this.xVel = 0;
+            settledSnowflakes.push({
+                x: this.x,
+                y: this.y,
+                size: this.size
+            });
+            this.spawn();
+        }
+    }, {
         key: 'render', value: function render() {
             ctx.save(); var
                 x = this.x, y = this.y, angle = this.angle, size = this.size;
             ctx.beginPath();
-            ctx.arc(x, y, size * 0.2, 0, Math.PI * 2, false);
+            ctx.arc(x, y, size * 0.15, 0, Math.PI * 2, false); // Smaller rendered size (was 0.2)
             ctx.fill();
             ctx.restore();
         }
@@ -94,6 +133,7 @@ var rand = function rand(min, max) { return min + Math.random() * (max - min); }
 function resize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
+    groundLevel = height;
 }
 
 window.addEventListener('resize', resize);
