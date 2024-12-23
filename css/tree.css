@@ -387,6 +387,7 @@
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
+    z-index: 100000;
 }
 
 .modal-text {
